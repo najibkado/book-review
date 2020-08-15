@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {% block title %}  {% endblock %}
+        </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+
+        <section>
+            <nav class="navbar navbar-dark bg-primary">
+                <div class="navbar-item">
+                    <a href="{{ url_for('index') }}" class="nav-link" style="color: white;">Home</a>
+                </div>
+                {% if authentication == True %}
+                    <div class="navbar-item">
+                        <a href="{{ url_for('logout') }}" class="nav-link" style="color: white;">Logout</a>
+                    </div>
+                {% else %}
+                    <div class="navbar-item">
+                        <a href="{{ url_for('login') }}" class="nav-link" style="color: white;">Login</a>
+                    </div>
+                {% endif %}
+            </nav>
+        </section>
+
+        <section class="container-fluid">
+            {% block body %}
+            {% endblock %}
+        </section>
+
+    </body>
+    <footer class="footer">
+        <div>
+            <p> Made With Love by MKN</p>
+        </div>
+    </footer>
+</html>

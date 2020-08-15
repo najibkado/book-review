@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block body %}  
+<p class="error">{{ error }}</p>
+    <div class="form-card">
+        <h4>Login</h4>
+        <form action="{{ url_for('login')}}" method="post">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <br>
+        <div class="form-group">
+            <a class="form-check-label" href="{{ url_for('register') }}">Create a new account</a>
+        </div>
+    </div>
+
+{% endblock %}

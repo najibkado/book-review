@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Book
+{% endblock %}
+
+{% block body %}
+
+    <div class="alert alert-success" role="alert">
+       Average rating from <a href="https://www.goodreads.com" class="alert-link">good reads</a> is {{ goodreads_data.books[0].average_rating }} by {{ goodreads_data.books[0].ratings_count }} users.
+    </div>
+
+    <div class="book-and-reviews">
+       
+        <div class="book">
+
+            <div class="jumbotron jumbotron-fluid">
+                <h1 class="display-4">{{ book.title}}</h1>
+                <p class="lead">{{ book.author }}</p>
+                <hr class="my-4">
+                <p>YEAR: {{ book.year}} | ISBN: {{ book.isbn }}</p>
+            </div>
+
+            <div style="text-align: left;">
+                <h3> Add a review </h3>
+                <form class="form" action="{{ url_for('review', bookid=book.id) }}" method="POST">
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="rate">
+                      <option selected>Rate</option>
+                      <option value="1">⭐</option>
+                      <option value="2">⭐⭐</option>
+                      <option value="3">⭐⭐⭐</option>
+                      <option value="4">⭐⭐⭐⭐</option>
+                      <option value="5">⭐⭐⭐⭐⭐</option>
+                    </select>
+                  
+                    <label for="exampleFormControlTextarea1">Review note</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="review_note"></textarea>
+                  
+                    <button type="submit" class="btn btn-primary my-1">Submit</button>
+                    <div>
+                        <p class="error"> {{ error }} </p>
+                    </div>
+                  </form>
+            </div>
+
+       </div>
+
+
+       <div class="book">
+        <div class="card-header">
+            Reviews
+        </div>
+        {% for view in review %}
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ view.review }}
+                <span class="badge badge-primary badge-pill"> {{ view.rating }} </span>
+                </li>
+            </ul>               
+        {% endfor %}
+       </div>
+
+    </div>
+{% endblock %}
+
+
+  <!-- <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      Featured
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Cras justo odio</li>
+      <li class="list-group-item">Dapibus ac facilisis in</li>
+      <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+  </div> -->

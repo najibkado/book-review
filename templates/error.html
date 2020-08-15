@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block body %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+        <h1 class="display-4">Sorry!</h1>
+        <p class="lead">{{ message }}</p>
+        </div>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('index') }}" role="button">Return</a>
+    </div>
+{% endblock %}
